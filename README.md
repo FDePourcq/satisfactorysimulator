@@ -10,13 +10,13 @@ Structure of main, edit this at your convenience:
 ```
 int main(){
     // parse and load the configuration: all resources&items, all recipes and all the power generating buildings.
-    World w;                                                                                                                                                                                                                                                                                                                                 
-    w.loadFromCommunityResourcesDocsJson("Docsv0322.json"); 
+    World w;
+    w.loadFromCommunityResourcesDocsJson("Docsv0322.json");
     // add additional recipes to help fix problems: variations on existing recipes where one of the outputproducts is discarded.
 
     createRecipeWithoutOutput("Fuel","PolymerResin"); // as if the polymerressin will be fed to the shredder.
     ...
-    
+
     // Prepare a simulation with a strategy:
     //  for each resource there will be a demand and a customised sequence of recipes to obtain it.
     // To satisfy demand the sequence of recipes will be iterated,
@@ -27,6 +27,12 @@ int main(){
                 //w.getRecipeNC("Alternate: Rubber Concrete"),
                 //w.getRecipeNC("Alternate: Wet Concrete"),
                 w.getRecipeNC("Alternate: Fine Concrete"),
+    };
+    s.resource_to_waytoobtainit[w.getResourceNC("Rubber")]  = {
+                //w.getRecipeNC("danieltheprogrammer"),
+                w.getRecipeNC("Rubber"),
+                w.getRecipeNC("Alternate: Recycled Rubber"),
+                //w.getRecipeNC("Residual Rubber"),
     };
     ...
 
@@ -45,7 +51,7 @@ int main(){
     // - dump all resources and what they did.
     // - dump each flow from one recipe to another, ideal for sankey-diagrams.
     //    --> part of the output can be copied straight to
-    //        https://observablehq.com/@mbostock/flow-o-matic 
+    //        https://observablehq.com/@mbostock/flow-o-matic
 
 }
 ```
@@ -57,51 +63,51 @@ int main(){
 This layout seemed efficient for satisfactory shortly after update 3 at the beginning of march 2020:
  (the numbers indicate the amount of pipes or conveyors needed. The numbers between brackets indicate the amount of minutes the recipes has been run, or the amount of buildings needed to run the recipe in one minute.)
 ![](brightness13.png)
-![](brightness14.png)  
+![](brightness14.png)
 
 Textual output could list stuff like this:
 
 ```
 resourcetype                                   demand                                    input
 ------------------------------------------------------------------------------------------------
- Cement                                        480.0 (       0.6 convmk5) 
- IronPlate                                     118.5 (       0.2 convmk5) 
- CartridgeStandard                              10.0 (       0.0 convmk5) 
- Wire                                         1040.4 (       1.3 convmk5) 
- IronPlateReinforced                            35.6 (       0.0 convmk5) 
- CopperIngot                                  1161.1 (       1.5 convmk5) 
- SpaceElevatorPart_3                            75.0 (       0.1 convmk5) 
- SpaceElevatorPart_5                            10.0 (       0.0 convmk5) 
- IronIngot                                    1015.3 (       1.3 convmk5) 
- AluminumPlate                                  26.7 (       0.0 convmk5) 
- Rubber                                        111.7 (       0.1 convmk5) 
- CircuitBoard                                   95.4 (       0.1 convmk5) 
- CopperSheet                                   272.9 (       0.3 convmk5) 
- Plastic                                        46.7 (       0.1 convmk5) 
- SteelPlateReinforced                           66.7 (       0.1 convmk5) 
- SteelPipe                                    1001.0 (       1.3 convmk5) 
- LiquidFuel(m3)                                 10.4 (       0.0 pipes  ) 
- HeavyOilResidue(m3)                           228.9 (       0.8 pipes  ) 
- ModularFrame                                   53.3 (       0.1 convmk5) 
- SteelIngot                                   1522.9 (       2.0 convmk5) 
- AluminaSolution(m3)                            96.0 (       0.3 pipes  ) 
- AluminumScrap                                 160.0 (       0.2 convmk5) 
- AluminumIngot                                  53.3 (       0.1 convmk5) 
- Silica                                        681.6 (       0.9 convmk5) 
- Computer                                       10.0 (       0.0 convmk5) 
- ModularFrameHeavy                              20.0 (       0.0 convmk5) 
- SteelPlate                                      0.4 (       0.0 convmk5) 
- GoldIngot                                     126.0 (       0.2 convmk5) 
- HighSpeedConnector                             18.8 (       0.0 convmk5) 
- Stator                                         37.5 (       0.0 convmk5) 
- CircuitBoardHighSpeed                          12.6 (       0.0 convmk5) 
- HighSpeedWire                                1095.8 (       1.4 convmk5) 
- QuartzCrystal                                 126.0 (       0.2 convmk5) 
- LiquidTurboFuel(m3)                           183.1 (       0.6 pipes  ) 
- CrystalOscillator                              12.6 (       0.0 convmk5) 
- Gunpowder                                      40.0 (       0.1 convmk5) 
- Battery                                        10.0 (       0.0 convmk5) 
- NobeliskExplosive                              10.0 (       0.0 convmk5) 
+ Cement                                        480.0 (       0.6 convmk5)
+ IronPlate                                     118.5 (       0.2 convmk5)
+ CartridgeStandard                              10.0 (       0.0 convmk5)
+ Wire                                         1040.4 (       1.3 convmk5)
+ IronPlateReinforced                            35.6 (       0.0 convmk5)
+ CopperIngot                                  1161.1 (       1.5 convmk5)
+ SpaceElevatorPart_3                            75.0 (       0.1 convmk5)
+ SpaceElevatorPart_5                            10.0 (       0.0 convmk5)
+ IronIngot                                    1015.3 (       1.3 convmk5)
+ AluminumPlate                                  26.7 (       0.0 convmk5)
+ Rubber                                        111.7 (       0.1 convmk5)
+ CircuitBoard                                   95.4 (       0.1 convmk5)
+ CopperSheet                                   272.9 (       0.3 convmk5)
+ Plastic                                        46.7 (       0.1 convmk5)
+ SteelPlateReinforced                           66.7 (       0.1 convmk5)
+ SteelPipe                                    1001.0 (       1.3 convmk5)
+ LiquidFuel(m3)                                 10.4 (       0.0 pipes  )
+ HeavyOilResidue(m3)                           228.9 (       0.8 pipes  )
+ ModularFrame                                   53.3 (       0.1 convmk5)
+ SteelIngot                                   1522.9 (       2.0 convmk5)
+ AluminaSolution(m3)                            96.0 (       0.3 pipes  )
+ AluminumScrap                                 160.0 (       0.2 convmk5)
+ AluminumIngot                                  53.3 (       0.1 convmk5)
+ Silica                                        681.6 (       0.9 convmk5)
+ Computer                                       10.0 (       0.0 convmk5)
+ ModularFrameHeavy                              20.0 (       0.0 convmk5)
+ SteelPlate                                      0.4 (       0.0 convmk5)
+ GoldIngot                                     126.0 (       0.2 convmk5)
+ HighSpeedConnector                             18.8 (       0.0 convmk5)
+ Stator                                         37.5 (       0.0 convmk5)
+ CircuitBoardHighSpeed                          12.6 (       0.0 convmk5)
+ HighSpeedWire                                1095.8 (       1.4 convmk5)
+ QuartzCrystal                                 126.0 (       0.2 convmk5)
+ LiquidTurboFuel(m3)                           183.1 (       0.6 pipes  )
+ CrystalOscillator                              12.6 (       0.0 convmk5)
+ Gunpowder                                      40.0 (       0.1 convmk5)
+ Battery                                        10.0 (       0.0 convmk5)
+ NobeliskExplosive                              10.0 (       0.0 convmk5)
  Water(m3)                                     120.0 (       0.4 pipes  )       91.6 (       0.3 pipes  )
  OreIron                                       696.4 (       0.9 convmk5)      696.4 (       0.9 convmk5)
  OreCopper                                     986.7 (       1.3 convmk5)      986.7 (       1.3 convmk5)
@@ -112,7 +118,7 @@ resourcetype                                   demand                           
  OreGold                                       378.0 (       0.5 convmk5)      378.0 (       0.5 convmk5)
  RawQuartz                                     604.6 (       0.8 convmk5)      604.6 (       0.8 convmk5)
  Sulfur                                        279.8 (       0.4 convmk5)      279.8 (       0.4 convmk5)
- CompactedCoal                                 193.1 (       0.2 convmk5) 
+ CompactedCoal                                 193.1 (       0.2 convmk5)
  energyMJ                                   366235.1 (    6103.9 MW     )        0.0 (       0.0 MW     )
  _TFuel                                          0.3 minutes (or buildings)
  _TPlastic                                       2.0 minutes (or buildings)
@@ -125,7 +131,7 @@ resourcetype                                   demand                           
  _TAluminum Ingot                                0.7 minutes (or buildings)
  _TAlternate: Fused Wire                        11.6 minutes (or buildings)
  _TAdaptive Control Unit                        10.0 minutes (or buildings)
- BlueprintGeneratedClass__/Game/FactoryGame/Resource/Equipment/Beacon/BP_EquipmentDescriptorBeacon.BP_EquipmentDescriptorBeacon_C__        2.0 (       0.0 convmk5) 
+ BlueprintGeneratedClass__/Game/FactoryGame/Resource/Equipment/Beacon/BP_EquipmentDescriptorBeacon.BP_EquipmentDescriptorBeacon_C__        2.0 (       0.0 convmk5)
  _TAlternate: Heavy Oil Residue                  2.8 minutes (or buildings)
  _TAlternate: Automated Speed Wiring            10.0 minutes (or buildings)
  _TA.I. Limiter                                  2.5 minutes (or buildings)
