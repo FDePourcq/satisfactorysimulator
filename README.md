@@ -54,6 +54,7 @@ int main(){
 
 
 This layout seemed efficient for satisfactory shortly after update 3 at the beginning of march 2020:
+ (the numbers indicate the amount of pipes or conveyors needed. The numbers between brackets indicate the amount of minutes the recipes has been run, or the amount of buildings needed to run the recipe in one minute.)
 ![](brightness13.png)
 ![](brightness14.png)  
 
