@@ -6,6 +6,7 @@ Dependencies: rapidjson, c++-11
 
 
 Structure of main, edit this at your convenience:
+```
 int main(){
     // parse and load the configuration: all resources&items, all recipes and all the power generating buildings.
     ...
@@ -39,6 +40,8 @@ int main(){
     //    --> part of the output can be copied straight to https://observablehq.com/@mbostock/flow-o-matic 
 
 }
-
-
+```
+This layout seemed efficient for satisfactory shortly after update 3 at the beginning of march 2020:
+![](brightness13.png)
+![](brightness14.png)  
 
