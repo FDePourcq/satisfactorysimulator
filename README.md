@@ -9,7 +9,8 @@ Structure of main, edit this at your convenience:
 ```
 int main(){
     // parse and load the configuration: all resources&items, all recipes and all the power generating buildings.
-    ...
+    World w;                                                                                                                                                                                                                                                                                                                                 
+    w.loadFromCommunityResourcesDocsJson("Docsv0322.json"); 
     // add additional recipes to help fix problems: variations on existing recipes where one of the outputproducts is discarded.
 
     createRecipeWithoutOutput("Fuel","PolymerResin"); // as if the polymerressin will be fed to the shredder.
