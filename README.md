@@ -1,5 +1,5 @@
 # satisfactorysimulator
-Simulator for the game satisfactory. Requires a dump from the game-configuration.
+Simulator for the game satisfactory (update3). Requires a dump from the game-configuration.
 
 No attempt has been made to made to make this polished or user-friendly.
 
