@@ -1,7 +1,7 @@
 # satisfactorysimulator
 Simulator for the game satisfactory (update3). Requires a dump from the game-configuration.
 
-No attempt has been made to made to make this polished or user-friendly.
+This thing can handle several tricky cases but no attempt has been made to make this polished or user-friendly.
 
 Dependencies: rapidjson, c++-11
 
